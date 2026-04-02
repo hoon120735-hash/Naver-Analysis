@@ -1,5 +1,12 @@
-positive_words = ["좋아요", "만족", "추천", "훌륭", "최고", "빠름", "예쁨", "편리", "튼튼", "재구매"]
-negative_words = ["별로", "불만", "느림", "나쁨", "최악", "불편", "아쉬움", "실망", "비쌈", "문제"]
+positive_words = [
+    "좋아요", "만족", "추천", "훌륭", "최고", "빠름", "예쁨",
+    "편리", "튼튼", "재구매", "괜찮아요", "잘쓰고", "좋습니다"
+]
+
+negative_words = [
+    "별로", "불만", "느림", "나쁨", "최악", "불편", "아쉬움",
+    "실망", "비쌈", "문제", "고장", "약함", "늦음"
+]
 
 
 def analyze_sentiment(reviews):
@@ -17,8 +24,16 @@ def analyze_sentiment(reviews):
 
     total = len(reviews)
 
+    if positive_count > negative_count:
+        overall = "긍정"
+    elif negative_count > positive_count:
+        overall = "부정"
+    else:
+        overall = "중립"
+
     return {
         "total_reviews": total,
         "positive": positive_count,
-        "negative": negative_count
+        "negative": negative_count,
+        "overall": overall
     }
